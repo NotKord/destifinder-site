@@ -1,0 +1,63 @@
+<!-- <script>
+    console.log(`"globalId": "${Date.now()}_${Math.floor(100000 + Math.random() * 900000)}",`)
+    
+</script> -->
+<script>
+    function openRateReviewModal(movie) {
+        const modalContent = document.getElementById('modal-content');
+        document.getElementById("myModal").style.width = "100%";
+
+        modalContent.innerHTML = `
+        <h2>Rate & Review: ${movie.title}</h2>
+        <form id="rateReviewForm">
+        <label for="rating">Rating:</label>
+        <div id="starRating" class="star-rating">
+        <span data-value="1" class="star">&#9733;</span>
+        <span data-value="2" class="star">&#9733;</span>
+        <span data-value="3" class="star">&#9733;</span>
+        <span data-value="4" class="star">&#9733;</span>
+        <span data-value="5" class="star">&#9733;</span>
+        </div>
+        <br>
+        <br>
+        <input type="hidden" id="rating" name="rating" required>
+        <br/>
+        <label for="review">Review:</label>
+        <textarea id="review" name="review" rows="4" cols="50" required></textarea>
+        <br/>
+        <button type="submit" class="know-more">Submit</button>
+        </form>`
+        ;
+
+        const stars = document.querySelectorAll('.star');
+        const ratingInput = document.getElementById('rating');
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+            const rating = star.getAttribute('data-value');
+            ratingInput.value = rating;
+
+            // Highlight the selected stars
+            stars.forEach(s => {
+                if (s.getAttribute('data-value') <= rating) {
+                        s.classList.add('selected');
+                    } else {
+                        s.classList.remove('selected');
+                    }
+                });
+            });
+        });
+
+        const form = document.getElementById('rateReviewForm');
+        form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const rating = ratingInput.value;
+        const review = document.getElementById('review').value;
+
+        // Handle the submission (e.g., save to database or display a confirmation)
+        //console.log("Rating: ", rating, "Review: ", review); //debugging step
+        addToWatchedList(movie,review,rating);
+        closeModal(); // Close the modal after submission
+        });
+        }
+</script>

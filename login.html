@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DestiFinder - Login</title>
+        <link rel="stylesheet" href="login.css">
+    </head>
+    <body>
+        <!-- Logo and Website Name -->
+        <div class="logo-container">
+            <img src="https://png.pngtree.com/png-vector/20240120/ourmid/pngtree-initial-df-letter-logo-with-creative-modern-business-typography-vector-png-image_11475925.png" alt="DestiFinder Logo" class="logo">
+            <span class="site-name">DestiFinder</span>
+        </div>
+
+        <!-- Welcome Back Message -->
+        <p class="welcome-message">Welcome back! Please log in to continue.</p>
+
+        <div class="login-container">
+            <form id="loginForm">
+                <div class="input-wrapper">
+                    <input 
+                      type="text" 
+                      id="userName" 
+                      name="userName"
+                      class="form-input" 
+                      placeholder="Username"
+                      autocomplete="given-name"
+                      required
+                      >
+                    <label 
+                      for="userName" 
+                      class="form-label">Username</label>
+                  </div>
+
+                  <div class="input-wrapper">
+                    <input 
+                      type="password" 
+                      id="password" 
+                      name="password"
+                      class="form-input" 
+                      placeholder="Password"
+                      autocomplete="given-name"
+                      required
+                      >
+                    <label 
+                      for="password" 
+                      class="form-label">Password</label>
+                  </div>
+
+                <button type="button" id="putJsonButton">Sign In</button>
+
+                <!-- Links for account and password -->
+                <div class="link-container">
+                    <a href="register.html" class="link">Don't have an account?</a>
+                </div>
+            </form>
+            <!-- Error message that will be shown if login fails -->
+            <p id="error-message" hidden>Incorrect user name or password. Please try again.</p>
+        </div>
+
+        <script src="retrieve.js"></script>
+        <script src="submit.js"></script>
+        <script src="login.js"></script>
+
+    </body>
+</html>

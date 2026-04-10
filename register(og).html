@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add User to JSONBin</title>
+  <!-- <link rel="stylesheet" href="Dstyles.css"> -->
+</head>
+<body>
+  <!-- <div id="globe">
+    <img src="Globe Image.jpg" alt="DestiFinder">
+  </div> -->
+    
+  <h1>Register Your Account</h1>
+
+  <form id="RegisterForm">
+	<label for="firstName">First Name:</label><br>
+	<input type="text" id="firstName" name="firstName" required><br><br>
+
+	<label for="lastName">Last Name:</label><br>
+	<input type="text" id="lastName" name="lastName" required><br><br>
+
+	<label for="userName">Username:</label><br>
+	<input type="text" id="userName" name="userName" required><br><br>
+
+	<label for="password">Password:</label><br>
+	<input type="password" id="password" name="password" 
+    oninput="if (this.value == confPassword.value) {
+        document.getElementById('putJsonButton').disabled = false;
+        document.getElementById('errorBox').style.display = 'none'
+    } else {
+        document.getElementById('putJsonButton').disabled = true
+        document.getElementById('errorBox').style.display = 'block'
+    }"required><br><br>
+
+    <label for="confPassword">Confirm Password:</label><br>
+	<input type="password" id="confPassword" name="confPassword" 
+    oninput="if (this.value == password.value) {
+        document.getElementById('putJsonButton').disabled = false;
+        document.getElementById('errorBox').style.display = 'none'
+    } else {
+        document.getElementById('putJsonButton').disabled = true
+        document.getElementById('errorBox').style.display = 'block'
+    }" required><br><br>
+    <label for="email">Email:</label><br>
+	<input type="email" id="email" name="email" required><br><br>
+
+    <div id="errorBox" style>Passwords Do Not Match!</div><br>
+
+	<button type="button" id="putJsonButton">Submit</button>
+
+  </form>
+
+  <p id="response"></p>
+
+  <script src="retrieve.js"></script>
+  <script src="submit.js"></script>
+
+  <script>
+	
+	async function submitData(event) {
+	  event.preventDefault(); // Prevent default form submission
+    
+	  const newUser = {
+		firstName: document.getElementById("firstName").value,
+		lastName: document.getElementById("lastName").value,
+		userName: document.getElementById("userName").value,
+		password: document.getElementById("password").value,
+        email: document.getElementById("email").value,
+        posts: {
+            createdPosts: [],
+            savedPosts: []
+        }
+	  };
+	
+	  try {
+		// Fetch existing data
+		const data = await getJSONData();
+		const existingData = JSON.parse(data);
+        
+		if (!Array.isArray(existingData)) {
+		  throw new Error("Fetched data is not an array");
+		} else {
+        for(var i = 0; i < existingData.length; i++){
+          if(existingData[i].email == document.getElementById("email").value) {
+            alert("This Email Is Already In Use.");
+            // console.log("Error: User entered existing email.")
+            throw new Error("User entered existing email.");
+          }
+          if(existingData[i].userName == document.getElementById("userName").value) {
+            alert("This Username Is Not Available.");
+            // console.log("Error: User entered existing username.")
+            throw new Error("User entered existing username.");
+          }
+        }
+    }
+	
+		// Add new user to existing data
+		existingData.push(newUser);
+	
+		// Update JSONBin with new data
+		await putJSONData(existingData);
+	
+		// Reset form and show success message
+		document.getElementById("addUserForm").reset();
+		document.getElementById("response").innerText = "User added successfully!";
+    window.location.href = 'login.html';
+	  } catch (error) {
+		console.error("Error:", error);
+		document.getElementById("response").innerText = "Error: " + error.message;
+	  }
+	}
+	
+	document.getElementById("putJsonButton").addEventListener("click", submitData);
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add User to JSONBin</title>
+  <link rel="stylesheet" href="register.css">
+
+  <link href="https://fonts.cdnfonts.com/css/abolition-test" rel="stylesheet">
+</head>
+
+<body>
+    <div class="logo-container">
+        <img src="https://png.pngtree.com/png-vector/20240120/ourmid/pngtree-initial-df-letter-logo-with-creative-modern-business-typography-vector-png-image_11475925.png" alt="DestiFinder Logo" class="logo">
+        <span class="site-name">DestiFinder</span>
+    </div>
+
+    <!-- Welcome Back Message -->
+    <p class="welcome-message"> Welcome to Destifinder! Create An Account. </p>
+
+    <div class="login-container">
+      <form id="addUserForm">
+
+        <div class="input-wrapper">
+          <input 
+            type="text" 
+            id="firstName" 
+            name="firstName"
+            class="form-input" 
+            placeholder="First Name"
+            autocomplete="given-name"
+            required
+            >
+          <label 
+            for="firstName" 
+            class="form-label">First Name</label>
+        </div>
+  
+        <div class="input-wrapper">
+          <input 
+            type="text" 
+            id="lastName" 
+            name="lastName" 
+            class="form-input" 
+            placeholder="Last Name"
+            autocomplete="given-name"
+            required
+            >
+          <label 
+            for="lastName" 
+            class="form-label">Last Name</label>
+        </div>
+  
+        <div class="input-wrapper md:span-2">
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            class="form-input"
+            placeholder="Email"
+            required
+            >
+  
+          <label 
+            for="email" 
+            class="form-label md:span-2">Email</label>
+        </div>
+  
+        <div class="input-wrapper md:span-2">
+          <input 
+            type="text" 
+            id="userName" 
+            name="userName"
+            class="form-input"
+            placeholder="Username"
+            required
+            >
+          <label 
+            for="userName" 
+            class="form-label">Username</label>
+        </div>
+  
+        <div class="input-wrapper md:span-2">
+          <input 
+            type="password" 
+            id="password" 
+            name="password"
+            class="form-input"
+            placeholder="Password"
+            required
+            oninput="validatePassword()" />
+  
+          <label 
+            for="password" 
+            class="form-label">Password</label>
+        </div>
+  
+        <div class="input-wrapper md:span-2">
+          <input 
+            type="password" 
+            id="confPassword" 
+            name="confPassword"
+            class="form-input"
+            placeholder="Confirm Password"
+            required
+            oninput="checkPasswordMatch()" />
+  
+          <label 
+            for="confPassword" 
+            class="form-label">Confirm Password</label>
+        </div>
+  
+        <div id="errorBox"></div><br>
+        <button type="button" id="putJsonButton" class="btn md:span-2" disabled>Submit</button>
+    
+        <!-- Links for account and password -->
+        <div class="link-container">
+          <a href="login.html" class="link">Have an account?</a>
+        </div>
+
+      </form>
+
+        <!-- Error message that will be shown if login fails -->
+        <p id="error-message" hidden>Incorrect user name or password. Please try again.</p>
+    </div>
+  <!-- <div class="container">
+    
+    <h1>Welcome to DestiFinder</h1>
+
+    <form id="addUserForm">
+
+      <div class="input-wrapper">
+        <input 
+          type="text" 
+          id="firstName" 
+          name="firstName"
+          class="form-input" 
+          placeholder="First Name"
+          autocomplete="given-name"
+          required
+          >
+        <label 
+          for="firstName" 
+          class="form-label">First Name</label>
+      </div>
+
+      <div class="input-wrapper">
+        <input 
+          type="text" 
+          id="lastName" 
+          name="lastName" 
+          class="form-input" 
+          placeholder="Last Name"
+          autocomplete="given-name"
+          required
+          >
+        <label 
+          for="lastName" 
+          class="form-label">Last Name</label>
+      </div>
+
+      <div class="input-wrapper md:span-2">
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          class="form-input"
+          placeholder="Email"
+          required
+          >
+
+        <label 
+          for="email" 
+          class="form-label md:span-2">Email</label>
+      </div>
+
+      <div class="input-wrapper md:span-2">
+        <input 
+          type="text" 
+          id="userName" 
+          name="userName"
+          class="form-input"
+          placeholder="Username"
+          required
+          >
+        <label 
+          for="userName" 
+          class="form-label">Username</label>
+      </div>
+
+      <div class="input-wrapper md:span-2">
+        <input 
+          type="password" 
+          id="password" 
+          name="password"
+          class="form-input"
+          placeholder="Password"
+          required
+          oninput="validatePassword()" />
+
+        <label 
+          for="password" 
+          class="form-label">Password</label>
+      </div>
+
+      <div class="input-wrapper md:span-2">
+        <input 
+          type="password" 
+          id="confPassword" 
+          name="confPassword"
+          class="form-input"
+          placeholder="Confirm Password"
+          required
+          oninput="checkPasswordMatch()" />
+
+        <label 
+          for="confPassword" 
+          class="form-label">Confirm Password</label>
+      </div>
+
+      <div id="errorBox"></div><br>
+      <button type="button" id="putJsonButton" class="btn md:span-2" disabled>Submit</button>
+  
+    </form>
+
+  </div> -->
+</body>
+
+
+  <p id="response"></p>
+
+  <script src="retrieve.js"></script>
+  <script src="submit.js"></script>
+  <script src="passwordValidation.js"></script>
+  <script src="register.js"></script>
+
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DestiFinder Homepage</title>
+        <link rel="stylesheet" href="homepage.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="sliderStyles.css">
+        <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    
+    </head>
+
+    <script src="retrieve.js"></script>
+    <script src="submit.js"></script>
+
+    <body>
+        <div class="container">
+            <!-- CREATE POST MODAL -->
+            <div class="modal fade" id="newMarkerModal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <form id="newMarkerForm">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <input type="text" id="newMarkerTitle" placeholder="New Post" class="modal-title">
+                            </div>
+                            <div class="modal-body">
+                                <label for="newMarkerLoc" required>Location:</label>
+                                <input type="text" id="newMarkerLoc" placeholder="*" class="form-control mb-2" required>
+                                <label for="newMarkerPics">Select Photos:</label>
+                                <!-- Container that holds image previews -->
+                                <div id="new_previewContainer"></div>
+                                <input type="file" id="newMarkerPics" name="newMarkerPics" accept="image/*" multiple required>
+    
+                                <label for="newMarkerDesc">Description:</label>
+                                <textarea id="newMarkerDesc" name="newMarkerDesc" placeholder="(...)" class="form-control mb-2" rows="4" cols="50" required></textarea>
+                                <label for="ratingContainer">Rating:</label>
+                                <div id="ratingContainer">
+                                    <span data-value="1" class="star">&#9733;</span>
+                                    <span data-value="2" class="star">&#9733;</span>
+                                    <span data-value="3" class="star">&#9733;</span>
+                                    <span data-value="4" class="star">&#9733;</span>
+                                    <span data-value="5" class="star">&#9733;</span>
+                                    <input type="hidden" class="newMarkerRating" id="newMarkerRating" name="newMarkerRating" required>
+                                </div>
+                                <div id="commentsToggleContainer">
+                                    <label>Comments:</label>
+                                    <label class="switch">
+                                        <input type="checkbox" name="newMarkerComments" checked>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button id="postNewMarker" class="btn btn-success w-100">Post Destination</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EDIT POST MODAL -->
+            <div class="modal fade" id="updateMarkerModal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <form id="updateMarkerForm">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <input type="text" id="updateMarkerTitle" placeholder="New Post" class="modal-title">
+                            </div>
+                            <div class="modal-body" style="overflow-y: auto;">
+                                <label for="updateMarkerLoc" required>Location:</label>
+                                <input type="text" id="updateMarkerLoc" placeholder="*" class="form-control mb-2" required>
+                                <label for="updateMarkerPics">Select Photos:</label>
+                                <!-- Container that holds image previews -->
+                                <div id="update_previewContainer"></div>
+                                <input type="file" id="updateMarkerPics" name="updateMarkerPics" accept="image/*" multiple>
+    
+                                <label for="updateMarkerDesc">Description:</label>
+                                <textarea id="updateMarkerDesc" name="updateMarkerDesc" placeholder="(...)" class="form-control mb-2" rows="4" cols="50" required></textarea>
+                                <label for="ratingContainer">Rating:</label>
+                                <div id="ratingContainer">
+                                    <span data-value="1" class="star">&#9733;</span>
+                                    <span data-value="2" class="star">&#9733;</span>
+                                    <span data-value="3" class="star">&#9733;</span>
+                                    <span data-value="4" class="star">&#9733;</span>
+                                    <span data-value="5" class="star">&#9733;</span>
+                                    <input type="hidden" class="updateMarkerRating" id="updateMarkerRating" name="updateMarkerRating" required>
+                                </div>
+                                <div id="commentsToggleContainer">
+                                    <label>Comments:</label>
+                                    <label class="switch">
+                                        <input type="checkbox" name="updateMarkerComments" checked>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button id="updateMarker" class="btn btn-success w-100">Update Destination</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DISPLAY POST MODAL -->
+            <div class="modal fade" id="detailsMarkerModal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h1 id="markerTitle">Unnamed Post</h1>
+                        </div>
+                        <div class="modal-body">
+                            <h3>Location:</h3>
+                            <p id="markerLoc"></p>
+                            <p id="markerGeoLoc"></p>
+                            <h3>Photos:</h3>
+                            <div class="carousel">
+                                <div id="pictureContainer"></div>
+                            </div>
+                            <h3>Description:</h3>
+                            <p id="markerDesc"></p>
+                            <h3>Rating:</h3>
+                            <p id="markerRating"></p>
+                            <h3>Comments:</h3>
+                            <div id="commentContainer"></div>
+                            <div id="newCommentContainer">
+                                <div id="replyContainer">
+                                    <p id="newReply"></p>
+                                    <button type="button" id="cancelReply" class="close" style="display: none">&times;</button>
+                                </div>
+                                <textarea id="newComment" name="newMarkerDesc" placeholder="..." class="form-control mb-2" rows="1" cols="15" wrap="soft" oninput="
+                                    this.value != '' ? document.getElementById('newCommentPost').disabled = false : document.getElementById('newCommentPost').disabled = true;
+                                    this.style.height = 'auto';
+                                    this.style.height = this.scrollHeight + 'px';
+                                "></textarea>
+                                <button id="newCommentPost" class="btn btn-primary" disabled>Post Comment</button>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="deleteMarker" class="btn btn-danger" style="display: none">Delete Post</button>
+                            <button id="editMarker" class="btn btn-success w-100" style="display: none">Edit Post</button>
+                            <button id="favMarker" class="btn btn-warning">Favorite Post</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal" id="modal-loading" data-backdrop="static">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-body text-center">
+                            <div class="loading-spinner mb-2"></div>
+                            <div>Please Wait..</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navBar">
+            <div class="logo-container">
+                <img src="https://png.pngtree.com/png-vector/20240120/ourmid/pngtree-initial-df-letter-logo-with-creative-modern-business-typography-vector-png-image_11475925.png" alt="DestiFinder Logo" class="logo">
+                <span class="site-name">DestiFinder</span>
+            </div>
+            <input type="text" placeholder="Search destinations..." class="search-bar">
+            <ul>
+                <li><a href="homepage.html" id="homePage">Home</a></li>
+                <li><a href="dashboard.html" id="userProfile">Profile</a></li>
+                <li><a href="#" id="logOut">Logout</a></li>
+            </ul>
+        </nav>
+
+        <script src="homeFuncs.js"></script>
+        
+        <!-- Call to Action Section -->
+        <div id="cta">
+            <h2>Explore the Homepage</h2>
+            <p>Welcome to your personalized homepage! Here you can easily navigate through your content, and track your progress. Happy traveling!</p>
+        </div>
+            <div>
+                <main class="content">
+                    <!-- Cards Go Here -->
+                </main>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2025 DestiFinder. All rights reserved.</p>
+        </footer>
+    </body>
+</html>

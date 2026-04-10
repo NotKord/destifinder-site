@@ -1,0 +1,350 @@
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+  
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+  
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+input:checked + .slider {
+    background-color: #2196F3;
+}
+  
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+  
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+  
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+  
+.slider.round:before {
+    border-radius: 50%;
+}
+
+
+/* FOR LOADING SCREEN */
+#modal-loading .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Ensure full height is used */
+}
+
+#modal-loading .modal-content {
+    width: 100%; /* Ensure it uses full width */
+}
+
+.loading-spinner{
+    width:30px;
+    height:30px;
+    border:2px solid indigo;
+    border-radius:50%;
+    border-top-color:#0001;
+    display:inline-block;
+    animation:loadingspinner .7s linear infinite;
+}
+    @keyframes loadingspinner{
+    0%{
+        transform:rotate(0deg)
+    }
+    100%{
+        transform:rotate(360deg)
+    }
+}
+
+#detailsMarkerModal .modal-content .modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#newCommentContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 10px;
+    column-gap: 5px;
+    max-width: 100%;
+    background-color: whitesmoke;
+    padding: 7px;
+    border-radius: 10px;
+}
+
+#replyContainer {
+    display: flex;
+    position: relative;
+    width: 100%;
+}
+
+#newReply {
+    font-weight: bold;
+    color: grey;
+    width: 90%;
+}
+
+#cancelReply {
+    position: absolute;
+    top: -3px;
+    right: 0;
+}
+
+#newComment {
+    flex-grow: 1;
+    max-width: 75%;
+    height: 32px;
+    resize: none;
+    overflow: hidden; 
+}
+
+#newCommentPost {
+    flex-shrink: 0;
+}
+
+#commentContainer {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    flex-wrap: wrap;
+    padding: 15px;
+    height: auto;
+    max-height: 225px;
+    font-size: 115%;
+    border-radius: 10px;
+    background-color: lightgray;
+    overflow-y: auto;
+}
+
+.commentCard {
+    position: relative;
+    width: 85%;
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 12px;
+    padding-bottom: 45px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+.replyCard {
+    margin-left: 50px;
+}
+
+.commentCard p{
+    width: 96%;
+    font-size: 1em;
+    padding-left: 15px;
+    overflow-wrap: break-word;
+}
+
+.commentButtonDiv{
+    margin: 10px;
+    bottom: 0px;
+    right: 0px;
+    position: absolute;
+    display: flex;
+    column-gap: 5px;
+}
+
+
+
+
+/* Modal CSS */
+
+div.modal-header{
+    margin: 5px 0px;
+    padding: 0px;
+    
+}
+
+div.modal-body h3{
+    font-family: 'Italiana', 'sans-serif';
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 2.6rem;
+
+}
+
+#newMarkerModal .modal-body, #updateMarkerModal .modal-body, #detailsMarkerModal .modal-body{
+    background: linear-gradient(180deg, #ffffff 0%, #8BCF7F 30%, #8BCF7F 70%, #ffffff 100%);
+}
+
+#newMarkerModal .modal-content, #updateMarkerModal .modal-content, #detailsMarkerModal .modal-content{
+    max-height: 45em; 
+    overflow-y: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.modal-header{
+    border-bottom: none !important;
+}
+
+.modal-footer{
+    border-top: none !important;
+}
+
+.markerFileInputCont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#commentsToggleContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+div#newCommentContainer{
+    background-color: transparent;
+    justify-content: center;
+}
+
+.carousel{
+    border-radius: 5px;
+    padding: 1rem;
+    background: #fff;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 8px;
+    max-width: 525px;
+    width: 85vw;
+    margin: auto;
+}
+
+div#pictureContainer{
+    display: flex;
+    gap: 40px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+}
+
+div#pictureContainer img{
+    padding: 0px !important;
+    scroll-snap-align: center;
+
+    margin: 5px 0px;
+    border-radius: 5px;
+    height: 281px;
+    width: 500px;
+}
+
+
+h1#markerTitle{
+    font-family: 'Italiana', 'sans-serif';
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 4.2rem;
+    text-align: center;
+    margin: 15px 10px 0px 10px;
+}
+div#commentContainer{
+    background-color: transparent;
+    height: 200px;
+    border: 2px solid white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+}
+
+div.modal-body p{
+    font-size: 1.7rem;
+}
+
+p#markerRating{
+    font-size: 50px;
+    text-align: center;
+}
+
+/* Comments */
+
+div.commentCard p{
+    margin: 5px 60px 5px 0px;
+    font-size: 16px;
+}
+
+div.commentCard h4{
+    margin: 5px 0px;
+}
+
+#new_previewContainer, #update_previewContainer {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    column-gap: 7px;
+}
+#new_previewContainer img, #update_previewContainer img{
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+#new_previewContainer img:hover, #update_previewContainer img:hover{
+    transform: scale(1.03);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.stars img{
+    border-top-left-radius: 1px;
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px;
+    align-content: center;
+    margin-top: 10%;
+    margin-left: 1%;
+    margin-right: auto;
+}
+
+.star-rating {
+    display: inline-block;
+}
+
+.star {
+    font-size: 40px;
+    color: gray;
+    cursor: pointer;
+}
+
+.star.selected {
+    color: gold;
+}
